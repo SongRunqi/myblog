@@ -1,7 +1,14 @@
+---
+title: Spring Boot Bean注入过程的详细步骤
+pubDate: 2024-10-11
+description: Spring Boot Bean注入过程的详细步骤
+---
+
 Spring Boot Bean注入过程的详细步骤：
 
 1. 应用上下文刷新
    位置：`AbstractApplicationContext.java`
+
    ```java
    public void refresh() {
        // ...
@@ -9,6 +16,7 @@ Spring Boot Bean注入过程的详细步骤：
        // ...
    }
    ```
+
    - 这是Spring容器启动的核心方法，其中调用了bean工厂后处理器。
 
 2. 配置类后处理
@@ -19,6 +27,7 @@ Spring Boot Bean注入过程的详细步骤：
 
 3. 配置类解析
    位置：`ConfigurationClassParser.java`
+
    ```java
    protected final SourceClass doProcessConfigurationClass(ConfigurationClass configClass, SourceClass sourceClass) throws IOException {
        // 处理 @ComponentScan 注解
@@ -27,10 +36,12 @@ Spring Boot Bean注入过程的详细步骤：
        // ...
    }
    ```
+
    - 处理成员类：`processMemberClasses(configClass, sourceClass)`
 
 4. 组件扫描注解解析
    位置：`ComponentScanAnnotationParser.java`
+
    ```java
    public Set<BeanDefinitionHolder> parse(AnnotationAttributes componentScan, final String declaringClass) {
        ClassPathBeanDefinitionScanner scanner = new ClassPathBeanDefinitionScanner(/* ... */);
@@ -52,6 +63,7 @@ Spring Boot Bean注入过程的详细步骤：
 
 7. 候选组件扫描
    位置：`ClassPathScanningCandidateComponentProvider.java`
+
    ```java
    scanCandidateComponents(String basePackage) {
        // ...
@@ -64,6 +76,7 @@ Spring Boot Bean注入过程的详细步骤：
        }
    }
    ```
+
    - 这一步骤详细说明了如何读取类的元数据并创建 bean 定义
 
 Bean注入过程的关键点：
