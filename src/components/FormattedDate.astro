@@ -1,12 +1,21 @@
 ---
 const { date } = Astro.props;
+
+function formatDate(dateInput: Date | string | number) {
+  const dateObject = dateInput instanceof Date ? dateInput : new Date(dateInput);
+  
+  if (isNaN(dateObject.getTime())) {
+    console.error('无效的日期:', dateInput);
+    return '无效日期';
+  }
+  
+  return dateObject.toLocaleDateString('zh-CN', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+}
 ---
-<time datetime={date.toISOString()}>
-	{
-		date.toLocaleDateString('zh-CN', {
-			year: 'numeric',
-			month: 'long',
-			day: 'numeric',
-		})
-	}
+<time datetime={date instanceof Date ? date.toISOString() : new Date(date).toISOString()}>
+  {formatDate(date)}
 </time>
