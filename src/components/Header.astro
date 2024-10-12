@@ -1,18 +1,24 @@
 ---
 import HeaderLink from "./HeaderLink.astro";
 import { SITE_TITLE } from "../consts";
+
+const navItems = [
+  { href: "/", text: "首页" },
+  { href: "/java", text: "Java" },
+  { href: "/springboot", text: "SpringBoot" },
+  { href: "/about", text: "关于" },
+  { href: "https://x.com/songyitian004", text: "Twitter", target: "_blank" },
+  { href: "https://github.com/SongRunqi", text: "GitHub", target: "_blank" },
+];
 ---
 
 <header>
 	<div class="header-content">
 		<h1>{SITE_TITLE}</h1>
 		<nav>
-			<HeaderLink href="/">首页</HeaderLink>
-			<HeaderLink href="/java">Java</HeaderLink>
-			<HeaderLink href="/springboot">SpringBoot</HeaderLink>
-			<HeaderLink href="/about">关于</HeaderLink>
-			<HeaderLink href="https://x.com/songyitian004" target="_blank">Twitter</HeaderLink>
-			<HeaderLink href="https://github.com/SongRunqi" target="_blank">GitHub</HeaderLink>
+			{navItems.map(({ href, text, target }) => (
+				<HeaderLink href={href} target={target}>{text}</HeaderLink>
+			))}
 		</nav>
 	</div>
 </header>
@@ -44,15 +50,15 @@ import { SITE_TITLE } from "../consts";
 		display: flex;
 		gap: 1.5rem;
 	}
-	nav :global(a) {
+	:global(nav a) {
 		color: #555;
 		text-decoration: none;
 		font-weight: 500;
 		font-size: 1rem;
 		transition: color 0.3s ease;
 	}
-	nav :global(a:hover),
-	nav :global(a.active) {
+	:global(nav a:hover),
+	:global(nav a.active) {
 		color: #007bff;
 	}
 	@media (max-width: 768px) {
