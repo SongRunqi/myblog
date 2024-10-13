@@ -38,6 +38,11 @@ import Layout from "../layouts/BlogPost.astro";
                     这个项目让我意识到了数学的魅力，原来数学真的很有用，它不再是数学书上枯燥的知识，它也可以是游戏，是快乐！
                 </p>
                 <a href="https://github.com/SongRunqi/Clock" class="project-link" target="_blank">查看项目：Clock</a>
+                <div class="video-container">
+                    <video src="/src/resources/clock.mov" controls>
+                        您的浏览器不支持 video 标签。
+                    </video>
+                </div>
             </article>
 
             <article class="project">
@@ -46,7 +51,14 @@ import Layout from "../layouts/BlogPost.astro";
                     这是一个基于Java Swing的系统，主要功能是对实验室的设备进行管理。后来我添加了一个聊天功能，方便管理员之间进行通信。
                     在这个项目中，我做了很多的抽象，完成了很好的工作。项目的难点是不同的客户端如何进行通讯，我采用的是基于socket的方式，每个客户端都是一个client，同时也是一个server。
                 </p>
-                <a href="https://github.com/SongRunqi/ChatWithMe" class="project-link" target="_blank">查看项目：ChatWithMe</a>
+                <div class="project-media">
+                    <a href="https://github.com/SongRunqi/ChatWithMe" class="project-link" target="_blank">查看项目：ChatWithMe</a>
+                    <div class="video-container">
+                        <video src="/src/resources/lab.mov" controls>
+                            您的浏览器不支持 video 标签。
+                        </video>
+                    </div>
+                </div>
             </article>
         </section>
     </div>
@@ -79,6 +91,30 @@ import Layout from "../layouts/BlogPost.astro";
             color: #159895;
             font-size: 1.2rem;
             margin-bottom: 10px;
+        }
+        .project-media {
+            margin-top: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .video-container {
+            width: 100%;
+            max-width: 600px;
+            margin-top: 1rem;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        @media (max-width: 600px) {
+            .video-container {
+                max-width: 100%;
+            }
         }
         .project-link {
             display: inline-block;
