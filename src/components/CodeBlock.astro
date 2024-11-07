@@ -1,0 +1,84 @@
+---
+interface Props {
+  code: string;
+  lang: string;
+}
+
+const { code, lang } = Astro.props;
+---
+
+<div class="code-block">
+  <div class="code-header">
+    <span class="language">{lang}</span>
+    <button class="copy-button" onclick="copyCode(this)">复制代码</button>
+  </div>
+  <pre><code class={`language-${lang}`}>{code}</code></pre>
+</div>
+
+<script is:inline>
+function copyCode(button) {
+  const pre = button.parentElement.nextElementSibling;
+  const code = pre.querySelector('code');
+  const text = code.innerText;
+  
+  navigator.clipboard.writeText(text).then(() => {
+    button.textContent = '已复制！';
+    setTimeout(() => {
+      button.textContent = '复制代码';
+    }, 2000);
+  }).catch(err => {
+    console.error('复制失败:', err);
+    button.textContent = '复制失败';
+  });
+}
+</script>
+
+<style>
+.code-block {
+  position: relative;
+  margin: 1em 0;
+}
+
+.code-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5em 1em;
+  background: #f6f8fa;
+  border: 1px solid #e1e4e8;
+  border-bottom: none;
+  border-radius: 6px 6px 0 0;
+}
+
+.language {
+  color: #666;
+  font-size: 0.85em;
+}
+
+.copy-button {
+  padding: 4px 12px;
+  font-size: 0.85em;
+  color: #666;
+  background-color: white;
+  border: 1px solid #d1d5da;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.copy-button:hover {
+  background-color: #f3f4f6;
+  border-color: #b1b5ba;
+}
+
+pre {
+  margin: 0;
+  border-radius: 0 0 6px 6px;
+}
+
+code {
+  display: block;
+  padding: 1em;
+  overflow-x: auto;
+}
+</style> 

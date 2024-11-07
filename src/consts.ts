@@ -6,3 +6,4 @@ export const SITE_DESCRIPTION = "feedId:68487064777779200+userId:604974413124444
 
 // 添加集合名称常量
 export const THOUGHTS_COLLECTION = "随想";
+export const DS_COLLECTION = "data-structure";
