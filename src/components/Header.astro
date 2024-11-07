@@ -4,8 +4,10 @@ import { SITE_TITLE } from "../consts";
 
 const navItems = [
   { href: "/", text: "首页" },
+  { href: "/blog", text: "博客" },
   { href: "/java", text: "Java" },
   { href: "/springboot", text: "SpringBoot" },
+  { href: "/随想", text: "随想" },
   { href: "/about", text: "关于" },
   { href: "https://x.com/songyitian004", text: "Twitter", target: "_blank" },
   { href: "https://github.com/SongRunqi", text: "GitHub", target: "_blank" },
@@ -14,61 +16,124 @@ const navItems = [
 
 <header>
 	<div class="header-content">
-		<h1>{SITE_TITLE}</h1>
+		<a href="/" class="logo">
+			<h1>{SITE_TITLE}</h1>
+		</a>
 		<nav>
-			{navItems.map(({ href, text, target }) => (
-				<HeaderLink href={href} target={target}>{text}</HeaderLink>
-			))}
+			<div class="nav-links">
+				{navItems.map(({ href, text, target }) => (
+					<HeaderLink href={href} target={target} class="nav-item">
+						{text}
+					</HeaderLink>
+				))}
+			</div>
 		</nav>
 	</div>
 </header>
 
 <style>
 	header {
-		background-color: #ffffff;
-		box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+		background: rgba(255, 255, 255, 0.95);
+		backdrop-filter: blur(10px);
+		box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
 		position: sticky;
 		top: 0;
 		z-index: 1000;
-		padding: 1rem 0;
+		padding: 0.8rem 0;
+		margin-bottom: 2rem;
 	}
+
 	.header-content {
 		max-width: 1200px;
 		margin: 0 auto;
-		padding: 0 1rem;
+		padding: 0 2rem;
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
 	}
+
+	.logo {
+		text-decoration: none;
+		transition: transform 0.3s ease;
+	}
+
+	.logo:hover {
+		transform: scale(1.05);
+	}
+
 	h1 {
 		margin: 0;
-		font-size: 1.5rem;
+		font-size: 1.6rem;
 		font-weight: 700;
-		color: #333;
+		background: linear-gradient(120deg, #2196F3, #4CAF50);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		letter-spacing: -0.5px;
 	}
-	nav {
+
+	.nav-links {
 		display: flex;
-		gap: 1.5rem;
+		gap: 2rem;
+		align-items: center;
 	}
-	:global(nav a) {
+
+	:global(.nav-item) {
 		color: #555;
 		text-decoration: none;
 		font-weight: 500;
-		font-size: 1rem;
-		transition: color 0.3s ease;
+		font-size: 0.95rem;
+		padding: 0.5rem 0.8rem;
+		border-radius: 6px;
+		transition: all 0.3s ease;
+		position: relative;
 	}
-	:global(nav a:hover),
-	:global(nav a.active) {
-		color: #007bff;
+
+	:global(.nav-item::after) {
+		content: '';
+		position: absolute;
+		bottom: 0;
+		left: 50%;
+		width: 0;
+		height: 2px;
+		background: linear-gradient(120deg, #2196F3, #4CAF50);
+		transition: all 0.3s ease;
+		transform: translateX(-50%);
 	}
+
+	:global(.nav-item:hover) {
+		color: #2196F3;
+		background: rgba(33, 150, 243, 0.1);
+	}
+
+	:global(.nav-item:hover::after) {
+		width: 80%;
+	}
+
+	:global(.nav-item.active) {
+		color: #2196F3;
+		background: rgba(33, 150, 243, 0.1);
+	}
+
+	:global(.nav-item.active::after) {
+		width: 80%;
+	}
+
 	@media (max-width: 768px) {
 		.header-content {
 			flex-direction: column;
-			align-items: flex-start;
+			padding: 0 1rem;
+			gap: 1rem;
 		}
-		nav {
-			margin-top: 1rem;
+
+		.nav-links {
 			flex-wrap: wrap;
+			justify-content: center;
+			gap: 1rem;
+		}
+
+		:global(.nav-item) {
+			font-size: 0.9rem;
+			padding: 0.4rem 0.6rem;
 		}
 	}
 </style>
