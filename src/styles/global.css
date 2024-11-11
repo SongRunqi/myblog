@@ -106,7 +106,7 @@ img {
 }
 code {
 	padding: 2px 5px;
-	background-color: rgb(var(--gray-light));
+	background-color: #844a4a;
 	border-radius: 2px;
 }
 pre {
@@ -197,7 +197,7 @@ hr {
 
 .hljs-literal,
 .hljs-number {
-	color: #b5cea8;
+	color: #7abd56;
 }
 
 .hljs-string {
@@ -205,16 +205,16 @@ hr {
 }
 
 .hljs-comment {
-	color: #6a9955;
+	color: #647b59;
 }
 
 .hljs-function {
-	color: #dcdcaa;
+	color: #dede54;
 }
 
 .hljs-operator,
 .hljs-punctuation {
-	color: #d4d4d4;
+	color: #826969;
 }
 
 /* 滚动条样式 */
@@ -240,7 +240,7 @@ pre::-webkit-scrollbar-track {
 	bottom: 0;
 	font-size: 0.9rem;
 	padding: 1.5em 0;
-	color: #4b5263;
+	color: #a2bbf6;
 	background-color: #282c34;
 	border-right: 1px solid #3e4451;
 	text-align: right;
@@ -249,6 +249,6 @@ pre::-webkit-scrollbar-track {
 
 /* 代码块内的特殊标记 */
 pre code .highlight {
-	background-color: rgba(229, 231, 235, 0.1);
+	background-color: rgba(128, 163, 233, 0.1);
 	display: block;
 }
